@@ -1,0 +1,15 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<h2>Permissions</h2>
+
+{% if has_credentials %}
+    <p>Thanks for granting us permission. Please <a href="/data">proceed to the main application</a>.</p>
+{% else %}
+    <p>Please <a href="{{ authorize_url }}">grant</a> this application permission to read your Google+ information.</p>
+{% endif %}
+
+<p>You can always <a href="https://www.google.com/accounts/b/0/IssuedAuthSubTokens">revoke</a> permission at any time.</p>
+
+{% endblock %}

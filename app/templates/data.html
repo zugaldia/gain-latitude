@@ -1,0 +1,24 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<h2>You are here</h2>
+
+<p>This is the latest location recorded by Google Latitude:</p>
+
+<ul>
+    <li>kind = <code>{{ kind }}</code></li>
+    <li>timestampMs = <code>{{ timestampMs }}</code></li>
+    <li>latitude = <code>{{ latitude }}</code></li>
+    <li>longitude = <code>{{ longitude }}</code></li>
+    <li>accuracy = <code>{{ accuracy }}</code></li>
+    <li>speed = <code>{{ speed }}</code></li>
+    <li>heading = <code>{{ heading }}</code></li>
+    <li>altitude = <code>{{ altitude }}</code></li>
+    <li>altitudeAccuracy = <code>{{ altitudeAccuracy }}</code></li>
+    <li>activityId = <code>{{ activityId }}</code></li>
+</ul>
+
+<p><a href="https://maps.google.com/maps?q={{ latitude }},{{ longitude }}">Map</a> this location.</p>
+
+{% endblock %}
