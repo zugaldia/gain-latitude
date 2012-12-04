@@ -1,1 +1,1 @@
-Donate your altitude data.
+GAIN Latitude: Donate your altitude data.
