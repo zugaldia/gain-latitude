@@ -57,20 +57,14 @@ class StepTwoHandler(webapp2.RequestHandler):
 class DataHandler(webapp2.RequestHandler):
     @decorator.oauth_required
     def get(self):
+        # See https://developers.google.com/latitude/v1/location#resource
         try:
             http = decorator.http()
             location = service.currentLocation().get(granularity='best').execute(http=http)
-            template_values = {
-                'kind': location.get('kind', '-'),
-                'timestampMs': location.get('timestampMs', '-'),
-                'latitude': location.get('latitude', '-'),
-                'longitude': location.get('longitude', '-'),
-                'accuracy': location.get('accuracy', '-'),
-                'speed': location.get('speed', '-'),
-                'heading': location.get('heading', '-'),
-                'altitude': location.get('altitude', '-'),
-                'altitudeAccuracy': location.get('altitudeAccuracy', '-'),
-                'activityId': location.get('activityId', '-')}
+            properties = [
+                'kind', 'timestampMs', 'latitude', 'longitude', 'accuracy',
+                'speed', 'heading', 'altitude', 'altitudeAccuracy', 'activityId']
+            template_values = {property_name: location.get(property_name, '-') for property_name in properties}
             template = jinja_environment.get_template('data.html')
             self.response.out.write(template.render(template_values))
         except AccessTokenRefreshError:
